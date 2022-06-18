@@ -32,5 +32,24 @@ Er zijn 2 soorten snelheden waar we rekening mee moeten houden:
 
 8 bps = 1 byte per seconde
 
+## URL's
+**Uniform Resource Locator**
+
+```
+(https://example.com:8042/over/there?name=ferret#nose)  
+\___/   \______________/\_________/ \_________/ \__/  
+  |            |            |            |        |
+
+scheme     authority       path        query   fragment
+```
+
+Bespreking van dit voorbeeld:
+- het gebruikte protocol is `https`
+- via DNS wordt het IP-adres van de server-host `example.com` opgezocht
+- het poortnummer waarop de server-host luistert is `8042`
+- het luisterende proces op de server-host gaat op zoek naar een resource met de naam `there` in het pad `over` 
+- het server-resource krijgt een parameter `name=ferret` mee
+- we zijn meerbepaald in een specifiek fragment v.d. resource geïnteresseerd, nl `nose`
+
 
 

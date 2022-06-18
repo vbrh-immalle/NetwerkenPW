@@ -81,6 +81,7 @@ Praktisch:
 Typisch aan laag 4 is het gebruik van **poortnummers**.
 
 > In `C:\Windows\system32\drivers\etc\services` vind je op een oplijsting van wat de standaard poortnummers zijn voor verschillende protocols, b.v. DNS: 53, HTTP: 80, ...
+> Opgelet: het gaat hier over de poortnummer aan de **server**-kant!
 
 ![](Header-UDP.png)
 
@@ -89,6 +90,16 @@ Typisch aan laag 4 is het gebruik van **poortnummers**.
 We zien aan de complexiteit v.d. TCP-header hoe dit transportlaagprotocol een complexere werking heeft dan het UDP-protocol.
 
 Zowel UDP als TCP hebben voor hun source- en destination-port een 16-bit getal, dus 2^16 = 65536 mogelijke poorten (uitgezonderd 0).
+
+Clients genereren een random poortnummer. Servers luisteren naar een welbepaald poortnummer. Samengevat:
+
+- Bij **requests** (van client naar server)
+	- source-port: random
+	- destination-port: luisterende poort op de server
+- Bij **responses** (van server naar client)
+	- source-port: de luisterende poort op de server
+	- destination-port: de initiële random-poort van de client
+
 
 Met TCP zetten we een connectie/sessie op.
 Hiervoor is een handshake nodig:
@@ -109,6 +120,7 @@ Praktisch:
 
 
 - `netstat -a`: toont alle recente UDP- en actieve TCP-verbindingen
+- `netstat -l`: toont alle **luisterend** verbindngen
 - `Get-NetTCPConnection`
 - `Get-NetUDPEndpoint`
 
